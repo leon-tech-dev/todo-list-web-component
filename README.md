@@ -4,6 +4,10 @@
 
 This project implements a feature-rich Todo List as a Web Component using TypeScript and modern web technologies.
 
+## Demo
+
+Check out the live demo: [Todo List Web Component](https://leon-tech-dev.github.io/todo-list-web-component/)
+
 ## Features
 
 - Add new todos
