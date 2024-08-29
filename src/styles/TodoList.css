@@ -7,6 +7,7 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 h2 {
@@ -198,4 +199,20 @@ li.dragging {
 
 li:hover .drag-handle {
   color: #333;
+}
+
+.github-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.github-badge img {
+  width: 30px;
+  height: 30px;
+  transition: opacity 0.3s ease;
+}
+
+.github-badge img:hover {
+  opacity: 0.8;
 }

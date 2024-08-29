@@ -24,6 +24,9 @@ class TodoList extends HTMLElement {
     this.shadow.innerHTML = `
     <style>${styles}</style>
     <h2>My Todo List</h2>
+    <a href="https://github.com/leon-tech-dev/todo-list-web-component" target="_blank" class="github-badge">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+    </a>
     <div class="todo-input">
       <input type="text" placeholder="Add a new todo">
       <button id="addTodo">Add</button>
