@@ -30,10 +30,6 @@ Check out the live demo: [Todo List Web Component](https://leon-tech-dev.github.
 
 ## Project Structure
 
-The project is organized into two main components:
-
-1. `TodoList`: The main component that manages the overall todo list.
-
 Key files:
 
 - `src/components/TodoList.ts`: Main TodoList component
