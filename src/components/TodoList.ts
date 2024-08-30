@@ -2,6 +2,14 @@ import { Todo } from "../types/Todo";
 import { saveTodos, loadTodos } from "../utils/todoUtils";
 import styles from "../styles/TodoList.css?inline";
 
+const initialTodos: Todo[] = [
+  { id: 1, text: "Learn Web Components", completed: true },
+  { id: 2, text: "Build a Todo List app", completed: false },
+  { id: 3, text: "Deploy to GitHub Pages", completed: false },
+  { id: 4, text: "Write project documentation", completed: false },
+  { id: 5, text: "Share project with community", completed: false },
+];
+
 class TodoList extends HTMLElement {
   private todos: Todo[] = [];
   private shadow: ShadowRoot;
@@ -20,7 +28,7 @@ class TodoList extends HTMLElement {
     this.initDragAndDrop();
   }
 
-  private async render() {
+  private render() {
     this.shadow.innerHTML = `
     <style>${styles}</style>
     <h2>My Todo List</h2>
@@ -80,7 +88,7 @@ class TodoList extends HTMLElement {
 
   private clearCompleted() {
     this.todos = this.todos.filter((todo) => !todo.completed);
-    saveTodos(this.todos);
+    this.saveTodos();
     this.updateTodoList();
   }
 
@@ -108,7 +116,7 @@ class TodoList extends HTMLElement {
       this.todos.unshift(newTodo);
       this.updateTodoList();
       input.value = "";
-      saveTodos(this.todos);
+      this.saveTodos();
     }
   }
 
@@ -117,14 +125,14 @@ class TodoList extends HTMLElement {
     if (todo) {
       todo.completed = !todo.completed;
       this.updateTodoList();
-      saveTodos(this.todos);
+      this.saveTodos();
     }
   }
 
   private deleteTodo(id: number) {
     this.todos = this.todos.filter((t) => t.id !== id);
     this.updateTodoList();
-    saveTodos(this.todos);
+    this.saveTodos();
   }
 
   private editTodo(id: number) {
@@ -142,7 +150,7 @@ class TodoList extends HTMLElement {
       const saveEdit = () => {
         todo.text = editInput.value.trim();
         this.updateTodoList();
-        saveTodos(this.todos);
+        this.saveTodos();
       };
 
       editInput.addEventListener("blur", saveEdit);
@@ -202,7 +210,14 @@ class TodoList extends HTMLElement {
   }
 
   private loadTodos() {
-    this.todos = loadTodos();
+    const savedTodos = loadTodos();
+    if (savedTodos && savedTodos.length > 0) {
+      console.log(savedTodos);
+      this.todos = savedTodos;
+    } else {
+      this.todos = initialTodos;
+      this.saveTodos();
+    }
     this.updateTodoList();
   }
 
